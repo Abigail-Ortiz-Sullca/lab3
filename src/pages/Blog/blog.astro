@@ -1,0 +1,22 @@
+---
+import PostCard from '../../components/PostCard.astro';
+import type { Post } from '../../types/Post';
+
+const res = await fetch('http://localhost:1337/api/articles');
+const posts: Post[] = await res.json();
+---
+
+<html>
+<head>
+  <title>Mi Blog en Astro</title>
+</head>
+<body>
+  <h1>mi api</h1>
+  <div>
+    {posts.map(post => (
+      <PostCard key={post.id} post={post} />
+    ))}
+  </div>
+</body>
+</html>
+
